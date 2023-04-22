@@ -11,50 +11,44 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskManager {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
+
+        String[] menu = {"add", "remove", "list", "exit"};
+        System.out.println(ConsoleColors.BLUE + "Please select an option: ");
+
+        for (String item : menu) {
+            System.out.println(ConsoleColors.RESET + item);
+        }
+
+        Scanner menuScan = new Scanner(System.in);
+        String menuChoice = menuScan.nextLine().toLowerCase();
+        System.out.println(menuChoice);
+
+        switch(menuChoice){
+            case "list":
+                ListTasks.list();
+                break;
+            case "add":
+                TaskAddition.add();
+                break;
+            case "remove":
+                RemoveTasks.remove();
+                break;
+            case "exit":
+                System.out.println(ConsoleColors.PURPLE_BOLD + "bye, bye");
+                break;
+            default:
+                System.out.println(ConsoleColors.RED_BACKGROUND + "It's possible that you've made a typo when writing");
+        }
+
 
 ///odczyt z pliku
-        Scanner scanFile = new Scanner(new File("tasks.csv"));
-        StringBuilder reading = new StringBuilder();
-        while (scanFile.hasNextLine()) {
-            reading.append(scanFile.nextLine()).append("\n");
-        }
-        String[] tasksArray = reading.toString().split("\n");
-        int counter = 1;
-        for (String item : tasksArray) {
-            System.out.println(counter++ + ": " + item);
-        }
+
 
 //dodawanie zadania
-        try (FileWriter fileWriter = new FileWriter("tasks.csv", true)) {
 
-            Scanner scanAddTask = new Scanner(System.in);
-            boolean isLoopWorking = true;
-            ;
-            while (isLoopWorking) {
-                System.out.print("Please add task description: ");
-                String taskName = scanAddTask.nextLine();
-//
-                fileWriter.append("\n").append(taskName).append(",");
-                System.out.print("Please add task due to date: ");
-                String dueToDate = scanAddTask.nextLine();
-//
-                fileWriter.append(dueToDate).append(",");
-                System.out.print("Is your task important (true/false): ");
-                String taskImportance = scanAddTask.nextLine();
-//
-                fileWriter.append(taskImportance);
-                isLoopWorking = false;
 
-            }
-        } catch (IOException ex) {
-            System.out.println("brak pliku");
-        }
 ///usuwanie taskow
-//
-
-
-
 
 
 //////////////////
@@ -66,14 +60,8 @@ public class TaskManager {
 //        System.out.println(array2D[0][1]);
 
 
-        /// menu
+        // menu
 
-        String[] menu = {"add", "remove", "list", "exit"};
-        System.out.println(ConsoleColors.BLUE + "PLease select an option: ");
-
-        for (String item : menu) {
-            System.out.println(ConsoleColors.RESET + item);
-        }
 
     }
 }

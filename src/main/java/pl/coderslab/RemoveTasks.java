@@ -10,32 +10,37 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class RemoveTasks {
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanFile = new Scanner(new File("tasks.csv"));
-        StringBuilder reading = new StringBuilder();
-        while (scanFile.hasNextLine()) {
-            reading.append(scanFile.nextLine()).append("\n");
-        }
-        String[] tasksArray = reading.toString().split("\n");
+    public static void remove() {
+        try (Scanner scanFile = new Scanner(new File("tasks.csv"))) {
 
 
-        Scanner idToRemove = new Scanner(System.in);
-        System.out.println("Podaj numer taska, ktory chcez usunac: ");
-        int taskToRemove = idToRemove.nextInt() -1;
-        System.out.println(taskToRemove);
-
-        try(FileWriter fileWriter = new FileWriter("tasks.csv",false)){
-
-            System.out.println(Arrays.toString(tasksArray));
-            tasksArray = ArrayUtils.remove(tasksArray, taskToRemove );
-            System.out.println(Arrays.toString(tasksArray));
-            for (int i = 0; i < tasksArray.length; i++) {
-                fileWriter.append(tasksArray[i]).append("\n");
+            StringBuilder reading = new StringBuilder();
+            while (scanFile.hasNextLine()) {
+                reading.append(scanFile.nextLine()).append("\n");
             }
+            String[] tasksArray = reading.toString().split("\n");
 
 
-        } catch(IOException ex){
-            System.out.println("brak pliku");
+            Scanner idToRemove = new Scanner(System.in);
+            System.out.println("Please select number to remove: ");
+            int taskToRemove = idToRemove.nextInt() - 1;
+            System.out.println(taskToRemove);
+
+            try (FileWriter fileWriter = new FileWriter("tasks.csv", false)) {
+
+                System.out.println(Arrays.toString(tasksArray));
+                tasksArray = ArrayUtils.remove(tasksArray, taskToRemove);
+                System.out.println(Arrays.toString(tasksArray));
+                for (int i = 0; i < tasksArray.length; i++) {
+                    fileWriter.append(tasksArray[i]).append("\n");
+                }
+                System.out.println(Arrays.toString(tasksArray));
+
+            } catch (IOException ex) {
+                System.out.println("there is no such file");
+            }
+        } catch(FileNotFoundException ex){
+            System.out.println("there is no such file");
         }
     }
 }
