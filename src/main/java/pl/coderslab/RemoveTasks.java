@@ -29,8 +29,12 @@ public class RemoveTasks {
 
                     tasksArray = ArrayUtils.remove(tasksArray, Integer.parseInt(taskToRemove) - 1);
 
-                    for (String task : tasksArray) {
-                        fileWriter.append(task).append("\n");
+                    for (int i = 0; i < tasksArray.length; i++) {
+                        if (i == 0) {
+                            fileWriter.append(tasksArray[i]);
+                        } else {
+                            fileWriter.append("\n").append(tasksArray[i]);
+                        }
                     }
 
                 } catch (IOException ex) {
@@ -38,8 +42,8 @@ public class RemoveTasks {
                 }
             } else if (!NumberUtils.isParsable(taskToRemove)) {
                 System.out.println(ConsoleColors.RED + "enter a number");
-            } else if(Integer.parseInt(taskToRemove) - 1 < 0 || Integer.parseInt(taskToRemove) - 1 >= tasksArray.length){
-                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "enter a number in the range of 1 to " + tasksArray.length );
+            } else if (Integer.parseInt(taskToRemove) - 1 < 0 || Integer.parseInt(taskToRemove) - 1 >= tasksArray.length) {
+                System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "enter a number in the range of 1 to " + tasksArray.length);
             }
 
         } catch (FileNotFoundException ex) {
