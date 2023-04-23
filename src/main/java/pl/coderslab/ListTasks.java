@@ -19,11 +19,9 @@ public class ListTasks {
             for (String item : tasksArray) {
                 System.out.println(counter++ + " : " + item);
             }
-//
         } catch (FileNotFoundException ex) {
             System.out.println("there is no such file");
             ex.printStackTrace();
         }
-
     }
 }

@@ -6,8 +6,6 @@ import java.util.Scanner;
 public class TaskManager {
     public static void main(String[] args) {
 
-
-
         boolean workingLoop = true;
         ;
         while(workingLoop){
@@ -39,8 +37,6 @@ public class TaskManager {
                     System.out.println(ConsoleColors.RED_BACKGROUND + "It's possible that you've made a typo when writing");
             }
         }
-
-
 
 // tablica dwuwymiarowa ale nie wiem po co ???!!!!!!!!
 //        String[][] array2D = new String[tasksArray.length][];
