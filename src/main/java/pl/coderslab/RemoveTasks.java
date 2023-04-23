@@ -24,17 +24,16 @@ public class RemoveTasks {
             Scanner idToRemove = new Scanner(System.in);
             System.out.println("Please select number to remove: ");
             int taskToRemove = idToRemove.nextInt() - 1;
-            System.out.println(taskToRemove);
+//            System.out.println(taskToRemove);
 
             try (FileWriter fileWriter = new FileWriter("tasks.csv", false)) {
 
-                System.out.println(Arrays.toString(tasksArray));
                 tasksArray = ArrayUtils.remove(tasksArray, taskToRemove);
-                System.out.println(Arrays.toString(tasksArray));
-                for (int i = 0; i < tasksArray.length; i++) {
-                    fileWriter.append(tasksArray[i]).append("\n");
+
+                for (String task : tasksArray) {
+                    fileWriter.append(task).append("\n");
                 }
-                System.out.println(Arrays.toString(tasksArray));
+
 
             } catch (IOException ex) {
                 System.out.println("there is no such file");
